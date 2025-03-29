@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function OtogasSection() {
-	const [isExpanded, setIsExpanded] = useState(true);
+	const [isExpanded, setIsExpanded] = useState(false);
 
 	const toggleExpand = () => {
 		setIsExpanded(!isExpanded);
@@ -29,6 +30,16 @@ function OtogasSection() {
 							and being Eco-friendly is just secondary.
 						</p>
 
+						<p className="mt-4 text-justify">
+									LPG autogas conversion works in exactly the same way as a
+									normal petrol or diesel engine, only the conventional fuel is
+									replaced with autogas LPG. Everything about the vehicle
+									remains the same, but a separate autogas fuel system and tank
+									are added. Converted vehicles become “dual-fuel” - you can
+									switch between petrol (diesel) or LPG autogas, even while on
+									the move.
+								</p>
+
 						{isExpanded && (
 							<>
 								<p className="mt-4 text-justify">
@@ -41,25 +52,25 @@ function OtogasSection() {
 									the move.
 								</p>
 
-								<p className="mt-4 text-justify">
+								{/* <p className="mt-4 text-justify">
 									LPG autogas tanks are constructed from steel and fitted in the
 									boot. Each tank is equipped with a multivalve, which includes
 									a fuel gauge, pressure relief valve, excess flow valve, and
 									shut-off valves. Tanks are typically filled via a filling
 									valve located at the rear of the vehicle.
-								</p>
+								</p> */}
 							</>
 						)}
 					</div>
 
 					{/* Toggle Read More / Read Less */}
 					<div className="mt-6">
-						<button
-							onClick={toggleExpand}
-							className="text-sm lg:text-lg text-protopink font-medium underline underline-offset-4"
-						>
+						<Link href="/otogas" 
+						className="text-sm lg:text-lg text-protopink font-medium underline underline-offset-4">
+							{/* {isExpanded ? "Read Less" : "Read More"} */}
 							{isExpanded ? "Read Less" : "Read More"}
-						</button>
+						</Link>
+					
 					</div>
 				</div>
 			</div>
