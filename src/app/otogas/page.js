@@ -239,16 +239,17 @@ const Benefits = () => {
 
                             {/* Conclusion Section */}
                             <p className="mt-8 text-gray-700 leading-relaxed">
-                                Switching to LPG is not just a financial decision; it's an investment in a cleaner environment and
+                                Switching to LPG is not just a financial decision; it&#39;s an investment in a cleaner environment and
                                 the longevity of your vehicle. Join the growing number of Kenyan drivers making the switch today!
                             </p>
+
                         </section>
 
                         {/* Where to Refill Section */}
                         <section className="bg-white p-6 rounded-lg shadow-md mt-8">
                             <h2 className="text-2xl font-bold mb-4 text-protopink">Where to Refuel</h2>
                             <p className="mb-4">
-                                Looking for a convenient place to refill your gas? We've got you covered! Visit any of our refill stations for fast, safe, and affordable service.
+                                Looking for a convenient place to refill your gas? We&#39;ve got you covered! Visit any of our refill stations for fast, safe, and affordable service.
                             </p>
 
                             {/* Tabs for Station Selection */}
