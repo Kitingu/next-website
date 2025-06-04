@@ -115,7 +115,7 @@ const Footer = () => {
 								<li>P.O. BOX 50384 - 00100</li>
 								<li>Nairobi, Kenya</li>
 								<li>
-									<a href="tel:0800723666" class="text-white">
+									<a href="tel:0800723666" className="text-white">
 										0800723666
 									</a>
 								</li>
