@@ -123,7 +123,7 @@ function Header({ scrollToSection }) {
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"
 									viewBox="0 0 15 14"
-								>
+								> 0700355855
 									<path
 										fill="#fff"
 										fillRule="evenodd"
