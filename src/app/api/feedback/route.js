@@ -149,7 +149,7 @@ export async function POST(req) {
           </div>
           
           <div class="footer">
-            <p>© ${new Date().getFullYear()} Otogas. All rights reserved.</p>
+            <p>© ${new Date().getFullYear()} Proto Energy. All rights reserved.</p>
             <p>This feedback was submitted through our website.</p>
           </div>
         </body>
