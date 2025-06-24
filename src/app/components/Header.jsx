@@ -107,40 +107,38 @@ function Header({ scrollToSection }) {
 
 			<div className="bg-protopink">
 				<div className="container mx-auto py-3 px-6">
-					<div className="flex items-center justify-between">
-						{/* WhatsApp icon with text */}
-						<div className="flex items-center gap-2">
-							<a
-								href="https://wa.me/254700355855"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="flex items-center hover:underline"
-							>
-								<span className="sr-only">WhatsApp</span>
-								<span className="text-white">Order cylinders via WhatsApp</span>
-								<svg
-									className="h-4 w-4 inline ml-1"
-									xmlns="http://www.w3.org/2000/svg"
-									fill="none"
-									viewBox="0 0 15 14"
-								> 
-									<path
-										fill="#fff"
-										fillRule="evenodd"
-										d="M7.5 12.309a5.464 5.464 0 0 1-3.028-.912l-2.117.678.689-2.047A5.468 5.468 0 0 1 1.993 6.8 5.514 5.514 0 0 1 7.5 1.293 5.513 5.513 0 0 1 13.009 6.8 5.515 5.515 0 0 1 7.5 12.309Zm0-12.06a6.551 6.551 0 0 0-5.608 9.933L.708 13.699l3.627-1.162A6.553 6.553 0 1 0 7.5.249Z"
-										clipRule="evenodd"
-									/>
-									<path
-										fill="#fff"
-										fillRule="evenodd"
-										d="M5.963 4.09c-.133-.321-.266-.268-.359-.268-.094 0-.202-.013-.309-.013a.596.596 0 0 0-.428.2c-.148.163-.562.55-.562 1.34s.576 1.554.656 1.66c.08.109 1.111 1.783 2.742 2.426 1.633.642 1.633.428 1.928.4.295-.027.951-.388 1.085-.763.133-.374.133-.695.096-.763-.041-.067-.151-.107-.31-.188-.162-.08-.95-.468-1.098-.522-.148-.053-.255-.08-.36.08-.11.16-.417.523-.51.63-.094.108-.188.12-.348.04-.16-.08-.678-.25-1.29-.797A4.898 4.898 0 0 1 6 6.44c-.092-.161-.008-.248.072-.328.073-.072.161-.187.24-.281.081-.094.106-.161.161-.268.052-.107.027-.201-.014-.282-.04-.081-.36-.87-.496-1.192Z"
-										clipRule="evenodd"
-									/>
-								</svg>
-								<p className="text-white ml-0.5 decoration-0"> 0700355855</p>
-								
-							</a>
-						</div>
+					   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      {/* WhatsApp Contact */}
+      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+        <a
+          href="https://wa.me/254700355855"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center text-white hover:underline"
+        >
+          <svg
+            className="h-4 w-4 mr-1"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 15 14"
+          >
+            <path
+              fill="#fff"
+              fillRule="evenodd"
+              d="M7.5 12.309a5.464 5.464 0 0 1-3.028-.912l-2.117.678.689-2.047A5.468 5.468 0 0 1 1.993 6.8 5.514 5.514 0 0 1 7.5 1.293 5.513 5.513 0 0 1 13.009 6.8 5.515 5.515 0 0 1 7.5 12.309Zm0-12.06a6.551 6.551 0 0 0-5.608 9.933L.708 13.699l3.627-1.162A6.553 6.553 0 1 0 7.5.249Z"
+              clipRule="evenodd"
+            />
+            <path
+              fill="#fff"
+              fillRule="evenodd"
+              d="M5.963 4.09c-.133-.321-.266-.268-.359-.268-.094 0-.202-.013-.309-.013a.596.596 0 0 0-.428.2c-.148.163-.562.55-.562 1.34s.576 1.554.656 1.66c.08.109 1.111 1.783 2.742 2.426 1.633.642 1.633.428 1.928.4.295-.027.951-.388 1.085-.763.133-.374.133-.695.096-.763-.041-.067-.151-.107-.31-.188-.162-.08-.95-.468-1.098-.522-.148-.053-.255-.08-.36.08-.11.16-.417.523-.51.63-.094.108-.188.12-.348.04-.16-.08-.678-.25-1.29-.797A4.898 4.898 0 0 1 6 6.44c-.092-.161-.008-.248.072-.328.073-.072.161-.187.24-.281.081-.094.106-.161.161-.268.052-.107.027-.201-.014-.282-.04-.081-.36-.87-.496-1.192Z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span>Order cylinders via WhatsApp</span>
+        </a>
+        <span className="text-white text-sm ml-1 sm:ml-0">0700 355 855</span>
+      </div>
 
 						{/* Social icons and phone number */}
 						<ul className="flex items-center gap-4">
