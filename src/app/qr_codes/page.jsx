@@ -86,7 +86,7 @@ export default function QRCodeSearch() {
                     <dd>{new Date(data.manufactureDate).toLocaleDateString()}</dd>
                   </div>
                   <div>
-                    <dt className="font-semibold">Date Added</dt>
+                    <dt className="font-semibold">Last Refill Date</dt>
                     <dd>{new Date(data.dateAdded).toLocaleDateString()}</dd>
                   </div>
                 </dl>

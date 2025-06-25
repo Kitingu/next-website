@@ -198,19 +198,24 @@ const Footer = () => {
 					<div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
 						<ul className="flex items-center flex-wrap space-x-4 lg:divide-x lg:divide-white">
 							<li className="px-2">
-								<Link href="/privacy-statement">
+								{/* <Link href="/privacy-statement">
 									<span className="text-base text-white">
 										Privacy Statement
 									</span>
+								</Link> */}
+									 <Link href="/qr_codes">
+									<span className="text-base text-white">
+										Verify QR Code
+									</span>
 								</Link>
 							</li>
-							<li className="px-2">
+							{/* <li className="px-2">
 								<Link href="/terms-and-conditions">
 									<span className="text-base text-white">
 										Terms & Conditions
 									</span>
 								</Link>
-							</li>
+							</li> */}
 						</ul>
 						<p className="text-xs text-center leading-5 text-gray-100 mt-4 lg:mt-0">
 							&copy; {new Date().getFullYear()} Powered by Proto Energy Limited
