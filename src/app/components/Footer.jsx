@@ -203,9 +203,9 @@ const Footer = () => {
 										Privacy Statement
 									</span>
 								</Link> */}
-									 <Link href="/qr_codes">
+									 <Link href="/privacy-policy">
 									<span className="text-base text-white">
-										Verify QR Code
+										Privacy Policy
 									</span>
 								</Link>
 							</li>
