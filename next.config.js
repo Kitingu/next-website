@@ -1,6 +1,6 @@
-// next.config.js
-module.exports = {
-  experimental: {
-    appDir: true,
-  },
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  output: 'standalone',
 };
+module.exports = nextConfig;
