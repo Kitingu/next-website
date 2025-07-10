@@ -1,4 +1,6 @@
-// next.config.js
-module.exports = {
-  output: 'export', // Required for static deployment
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  output: 'standalone',
 };
+module.exports = nextConfig;
