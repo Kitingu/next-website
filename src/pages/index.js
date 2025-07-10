@@ -1,19 +1,19 @@
 "use client";
 import { useEffect, useRef } from "react";
-import Header from "@/components/Header";
-import HeroSection from "@/components/HeroSection";
-import DiscoverSection from "@/components/DiscoverSection";
-import DomesticLPG from "@/components/DomesticLPG";
-import Reviews from "@/components/Reviews";
-import BulkLPG from "@/components/BulkLPG";
-import ExpertLPGSolutions from "@/components/ExpertLPGSolutions";
-import OtogasSection from "@/components/OtogasSection";
-import CarConversionSection from "@/components/CarConversionSection";
-import NewsSection from "@/components/NewsSection";
-import SustainabilityProgram from "@/components/SustainabilityProgram";
-import PeopleHumJobs from "@/components/PeopleHumJobs";
-import Footer from "@/components/Footer";
-import EsgSection from "@/components/EsgSection";
+import Header from "components/Header";
+import HeroSection from "components/HeroSection";
+import DiscoverSection from "components/DiscoverSection";
+import DomesticLPG from "components/DomesticLPG";
+import Reviews from "components/Reviews";
+import BulkLPG from "components/BulkLPG";
+import ExpertLPGSolutions from "components/ExpertLPGSolutions";
+import OtogasSection from "components/OtogasSection";
+import CarConversionSection from "components/CarConversionSection";
+import NewsSection from "components/NewsSection";
+import SustainabilityProgram from "components/SustainabilityProgram";
+import PeopleHumJobs from "components/PeopleHumJobs";
+import Footer from "components/Footer";
+import EsgSection from "components/EsgSection";
 
 export default function Home() {
   const refs = {

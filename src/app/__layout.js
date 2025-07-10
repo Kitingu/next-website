@@ -1,5 +1,5 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "components/Header";
+import Footer from "components/Footer";
 import "@/styles/globals.css"; // Import Tailwind or other global styles
 
 export const metadata = {

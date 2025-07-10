@@ -1,36 +1,27 @@
 import nodemailer from 'nodemailer';
 
-export async function POST(req) {
-  try {
-    const { name, email, message, rating } = await req.json();
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-    // Validate the inputs
+  try {
+    const { name, email, message, rating } = req.body;
+
     if (!rating) {
-      return new Response(
-        JSON.stringify({ error: "Rating is required." }),
-        { status: 400 }
-      );
+      return res.status(400).json({ error: 'Rating is required.' });
     }
 
-    // Set up the email transporter using Outlook's SMTP settings
     const transporter = nodemailer.createTransport({
       host: 'smtp.office365.com',
       port: 587,
-      secure: false, // Use TLS (587) instead of SSL (465)
+      secure: false,
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // Use app-specific password if using 2FA
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    // Mail options
-    // const mailOptions = {
-    //   from: process.env.EMAIL_USER, // Sender's address
-    //   to: process.env.FEEDBACK_RECEIVER_EMAIL, // Receiver's email
-    //   subject: 'New Feedback Submission',
-    //   text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nRating: ${rating}`,
-    //   html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong> ${message}</p><p><strong>Rating:</strong> ${rating}</p>`,
-    // };
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.FEEDBACK_RECEIVER_EMAIL,
@@ -126,28 +117,28 @@ export async function POST(req) {
             <h1>New Customer Feedback</h1>
             <div class="rating">${rating}/5 ★</div>
           </div>
-          
+
           <div class="content">
             <div class="info-label">From:</div>
             <div class="info-value">
               ${name || 'Anonymous'}<br>
               ${email ? `<a href="mailto:${email}">${email}</a>` : 'No email provided'}
             </div>
-            
+
             <div class="divider"></div>
-            
+
             <div class="info-label">Message:</div>
             <div class="message-box">
               ${message ? message.replace(/\n/g, '<br>') : 'No message provided'}
             </div>
-            
+
             <div class="divider"></div>
-            
+
             <center>
               ${email ? `<a href="mailto:${email}" class="reply-btn">Reply to Customer</a>` : ''}
             </center>
           </div>
-          
+
           <div class="footer">
             <p>© ${new Date().getFullYear()} Proto Energy. All rights reserved.</p>
             <p>This feedback was submitted through our website.</p>
@@ -157,18 +148,17 @@ export async function POST(req) {
       `,
     };
 
-    // Send the email
     await transporter.sendMail(mailOptions);
 
-    return new Response(
-      JSON.stringify({ message: "Feedback submitted successfully" }),
-      { status: 200 }
-    );
+    return res.status(200).json({ message: 'Feedback submitted successfully.' });
   } catch (error) {
-    console.error("Error sending email:", error);
-    return new Response(
-      JSON.stringify({ error: "Failed to send feedback. Please try again later." }),
-      { status: 500 }
-    );
+    console.error('Error sending email:', error);
+
+    // More graceful error messages
+    if (error.code === 'EAUTH') {
+      return res.status(500).json({ error: 'Email authentication failed. Please check credentials.' });
+    }
+
+    return res.status(500).json({ error: 'Failed to send feedback. Please try again later.' });
   }
 }

@@ -1,18 +1,20 @@
 import nodemailer from "nodemailer";
 
-// Named export for the POST method
-export async function POST(req) {
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
   try {
-    const body = await req.json();
-    const { fullName, phone, email, carDetails, location, comments } = body;
+    const { fullName, phone, email, carDetails, location, comments } = req.body;
 
     if (!fullName || !phone || !carDetails || !location) {
-      return new Response(JSON.stringify({ error: "Missing required fields" }), { status: 400 });
+      return res.status(400).json({ error: "Missing required fields." });
     }
 
-    // Configure Nodemailer Transporter
+    // Configure transporter for Outlook SMTP
     const transporter = nodemailer.createTransport({
-      host: 'smtp.office365.com',
+      host: "smtp.office365.com",
       port: 587,
       secure: false,
       requireTLS: true,
@@ -50,7 +52,7 @@ export async function POST(req) {
               <div class="detail-title">👤 Customer Information</div>
               <div class="detail-value">${fullName}</div>
               <div class="detail-value">📞 ${phone}</div>
-              ${email ? `<div class="detail-value">✉️ ${email}</div>` : ''}
+              ${email ? `<div class="detail-value">✉️ <a href="mailto:${email}">${email}</a></div>` : ''}
             </div>
             <div class="detail-box">
               <div class="detail-title">🚗 Vehicle Details</div>
@@ -61,10 +63,10 @@ export async function POST(req) {
               <div class="detail-value">${location}</div>
             </div>
             ${comments ? `
-            <div class="detail-box">
-              <div class="detail-title">💬 Additional Comments</div>
-              <div class="detail-value">${comments}</div>
-            </div>
+              <div class="detail-box">
+                <div class="detail-title">💬 Additional Comments</div>
+                <div class="detail-value">${comments.replace(/\n/g, '<br>')}</div>
+              </div>
             ` : ''}
             <div class="footer">
               <p>This request was submitted through the website. Please respond within 24 hours.</p>
@@ -76,12 +78,16 @@ export async function POST(req) {
       `,
     };
 
-    // Send email using nodemailer
     await transporter.sendMail(mailOptions);
 
-    return new Response(JSON.stringify({ message: "Email sent successfully!" }), { status: 200 });
+    return res.status(200).json({ message: "Email sent successfully!" });
   } catch (error) {
     console.error("Email sending failed:", error);
-    return new Response(JSON.stringify({ error: "Failed to send email." }), { status: 500 });
+
+    if (error.code === "EAUTH") {
+      return res.status(500).json({ error: "Email authentication failed. Check credentials." });
+    }
+
+    return res.status(500).json({ error: "Failed to send email. Please try again later." });
   }
 }
