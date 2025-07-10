@@ -1,13 +1,9 @@
-
 {
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [
-      "/api/*",
-      "/_next/*",
-      "/static/*",
-      "/images/*",
-      "/favicon.ico"
+      "/api/*",         
+      "/favicon.ico"   
     ]
   }
 }
