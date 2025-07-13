@@ -1,4 +1,4 @@
-"use client"; // Explicitly mark this as a client-side component
+"use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -31,55 +31,43 @@ function ExpertLPGSolutions() {
     subject: "",
     message: "",
   });
-  const [status, setStatus] = useState(""); // For success or error messages
-  const [loading, setLoading] = useState(false); // Loader state
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentReview((prevReview) => (prevReview + 1) % reviews.length);
-    }, 5000); // Change review every 5 seconds
-
-    return () => clearInterval(interval); // Clear interval on component unmount
+      setCurrentReview((prev) => (prev + 1) % reviews.length);
+    }, 5000);
+    return () => clearInterval(interval);
   }, [reviews.length]);
 
-  // Form Change Handler
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Form Submit Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form data
     if (!formData.email || !formData.subject || !formData.message) {
       setStatus("All fields are required.");
       return;
     }
 
-    setLoading(true); // Set loading to true when form is submitted
+    setLoading(true);
 
     try {
       const res = await fetch("/api/mailer", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          department: "cylinders", // This is the department for the Cylinders form
+          ...formData,
+          department: "cylinders",
         }),
       });
 
       if (res.ok) {
         setStatus("Feedback submitted successfully!");
-        setFormData({
-          email: "",
-          subject: "",
-          message: "",
-        }); // Reset form after successful submission
+        setFormData({ email: "", subject: "", message: "" });
       } else {
         const { error } = await res.json();
         setStatus(error || "Something went wrong, please try again later.");
@@ -88,53 +76,44 @@ function ExpertLPGSolutions() {
       console.error("Error sending feedback:", error);
       setStatus("Something went wrong, please try again later.");
     } finally {
-      setLoading(false); // Stop loading spinner after process completes
+      setLoading(false);
     }
   };
 
   return (
-    <div className="h-[250px] md:h-[300px] lg:h-[300px]">
-      <div className="grid grid-cols-1 lg:grid-cols-12 overflow-hidden h-full relative">
-        {/* Left Section with Background Image and Overlay */}
-        <div className="self-start col-span-full lg:col-span-6 grid h-full relative">
-          <div className="col-start-1 row-start-1 h-full">
-            <Image
-              className="w-full h-full object-cover bg-protoblue"
-              src="/images/pink_pattern.png"
-              alt="Background Pattern"
-              width={600}
-              height={400}
-            />
-          </div>
-
-          {/* Content Section */}
-          <div className="py-6 col-start-1 row-start-1 max-w-2xl mx-auto w-full place-content-center h-full flex flex-col justify-center z-20">
+    <div className="w-full bg-white">
+      <div className="grid grid-cols-1 lg:grid-cols-12">
+        {/* Review Section with Background */}
+        <div className="relative col-span-full lg:col-span-6 h-64 lg:h-auto">
+          <Image
+            src="/images/pink_pattern.png"
+            alt="Background Pattern"
+            fill
+            className="object-cover bg-protoblue"
+            priority
+          />
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 py-8 z-10 text-white">
             <h2 className="text-lg text-protopink font-bold lg:text-2xl">
               {reviews[currentReview].title}
             </h2>
-            <p className="text-base text-white mt-2">
-              {reviews[currentReview].content}
-            </p>
-            <p className="mt-2 text-sm text-gray-400">
+            <p className="mt-2 text-sm lg:text-base">{reviews[currentReview].content}</p>
+            <p className="mt-3 text-sm text-gray-200">
               - {reviews[currentReview].author}
             </p>
           </div>
         </div>
 
-        {/* Contact Us Section */}
-        <div className="col-span-1 lg:w-12 bg-protopink px-2 py-2 lg:[writing-mode:vertical-rl] flex items-center justify-center">
+        {/* Contact Us Label */}
+        <div className="lg:w-12 bg-protopink px-2 py-2 lg:[writing-mode:vertical-rl] flex items-center justify-center">
           <p className="text-2xl text-white text-center font-bold uppercase lg:rotate-180">
             Contact us
           </p>
         </div>
 
         {/* Form Section */}
-        <div className="self-start col-span-full lg:col-span-5 h-full flex items-center justify-center">
-          <div className="max-w-lg w-full h-full flex flex-col justify-center">
-            <form
-              className="grid grid-cols-6 gap-2 p-2 h-auto"
-              onSubmit={handleSubmit}
-            >
+        <div className="col-span-full lg:col-span-5 flex items-center justify-center px-4 py-6">
+          <div className="w-full max-w-lg bg-white shadow-md rounded-md p-4">
+            <form onSubmit={handleSubmit} className="grid grid-cols-6 gap-3">
               {/* Email */}
               <div className="col-span-full">
                 <input
@@ -170,21 +149,22 @@ function ExpertLPGSolutions() {
               {/* Message */}
               <div className="col-span-full">
                 <textarea
-                  name="your_msg"
+                  name="message"
                   className="user_dialog_input"
                   placeholder="Your message"
+                  rows={4}
                   value={formData.message}
                   onChange={handleChange}
                   required
                 ></textarea>
               </div>
 
-              {/* Submit Button */}
+              {/* Submit */}
               <div className="col-span-full">
                 <button
                   type="submit"
                   className="w-full btn btn-primary"
-                  disabled={loading} // Disable the button during submission
+                  disabled={loading}
                 >
                   {loading ? (
                     <div className="w-6 h-6 border-4 border-t-4 border-blue-500 rounded-full animate-spin mx-auto" />
@@ -193,12 +173,14 @@ function ExpertLPGSolutions() {
                   )}
                 </button>
               </div>
-            </form>
 
-            {/* Status Message */}
-            {status && (
-              <p className="mt-4 text-center text-red-500">{status}</p>
-            )}
+              {/* Status */}
+              {status && (
+                <div className="col-span-full text-center text-sm text-red-500 mt-2">
+                  {status}
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </div>

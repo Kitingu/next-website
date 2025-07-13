@@ -195,29 +195,26 @@ const Footer = () => {
 
 				{/* Footer Links */}
 				<div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-					<div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
-						<ul className="flex items-center flex-wrap space-x-4 lg:divide-x lg:divide-white">
+					<div className="flex flex-col items-center text-center lg:flex-row lg:justify-between lg:items-center lg:text-left">
+						{/* Links */}
+						<ul className="flex flex-col gap-2 lg:flex-row lg:items-center lg:divide-x lg:divide-white">
 							<li className="px-2">
-								{/* <Link href="/privacy-statement">
-									<span className="text-base text-white">
-										Privacy Statement
-									</span>
-								</Link> */}
-									 <Link href="/privacy-policy">
-									<span className="text-base text-white">
-										Privacy Policy
-									</span>
+								<Link href="/privacy-policy">
+									<span className="text-base text-white">Privacy Policy</span>
 								</Link>
 							</li>
-							{/* <li className="px-2">
-								<Link href="/terms-and-conditions">
-									<span className="text-base text-white">
-										Terms & Conditions
-									</span>
-								</Link>
-							</li> */}
+							{/* Uncomment when needed */}
+							{/* 
+      <li className="px-2 lg:pl-4">
+        <Link href="/terms-and-conditions">
+          <span className="text-base text-white">Terms & Conditions</span>
+        </Link>
+      </li> 
+      */}
 						</ul>
-						<p className="text-xs text-center leading-5 text-gray-100 mt-4 lg:mt-0">
+
+						{/* Copyright */}
+						<p className="mt-4 text-xs leading-5 text-gray-100 lg:mt-0">
 							&copy; {new Date().getFullYear()} Powered by Proto Energy Limited
 						</p>
 					</div>
