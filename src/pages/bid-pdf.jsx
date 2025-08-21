@@ -7,7 +7,7 @@ const docs = [
     type: "PDF",
     size: "181 KB",
     date: "15/01/2024",
-    href: "/docs/bidding_document",
+    href: "/docs/bidding_document.pdf",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const docs = [
     type: "PDF",
     size: "3.1 MB",
     date: "10/01/2024",
-    href: "/docs/list_of_vehicles.pdf",
+    href: "/docs/list_of_vehicles_2025.pdf",
   },
   {
     id: 3,
