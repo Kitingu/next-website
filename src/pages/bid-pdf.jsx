@@ -81,7 +81,7 @@ function AnnouncementCard() {
 					Applications are invited from interested bidders for the purchase of
 					the assets accessible on{" "}
 					<a
-						href="/docs/list_of_vehicles.pdf"
+						href="/docs/list_of_vehicles_2025.pdf"
 						className="font-medium underline underline-offset-2 hover:text-protoblue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-protoblue/50 rounded"
 					>
 						Asset List.pdf
