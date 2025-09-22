@@ -107,6 +107,31 @@ const Benefits = () => {
         setConversionCost(totalCost);
     };
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     setMessage("");
+    //     setError("");
+
+    //     if (!formData.fullName || !formData.phone || !formData.carDetails || !formData.location) {
+    //         setError("Please fill in all required fields.");
+    //         return;
+    //     }
+    //     setIsSending(true);
+
+    //     try {
+    //         const response = await axios.post("/api/convert", formData);
+    //         setMessage(response.data.message);
+    //         setFormData({ fullName: "", phone: "", email: "", carDetails: "", location: "", comments: "" });
+    //     } catch (error) {
+    //         console.log(error);
+    //         setError(error.response?.data?.error || "Failed to send request. Please try again.");
+    //     }
+    //     finally {
+    //         setIsSending(false);
+    //     }
+    // };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage("");
@@ -116,21 +141,31 @@ const Benefits = () => {
             setError("Please fill in all required fields.");
             return;
         }
+
         setIsSending(true);
 
         try {
             const response = await axios.post("/api/convert", formData);
             setMessage(response.data.message);
             setFormData({ fullName: "", phone: "", email: "", carDetails: "", location: "", comments: "" });
+
+            // ✅ Fire X (Twitter) conversion event AFTER successful submit
+            if (typeof window !== "undefined" && window.twq) {
+                // Send lightweight, non-PII props; add more if you need them
+                window.twq("event", "tw-odv3r-qgrfp", {
+                    event_name: "Lead",
+                    location: formData.location,
+                    // value: 0,            // optional
+                    // currency: "KES",     // optional
+                });
+            }
         } catch (error) {
             console.log(error);
             setError(error.response?.data?.error || "Failed to send request. Please try again.");
-        }
-        finally {
+        } finally {
             setIsSending(false);
         }
     };
-
     return (
         < div className="pt-36">
             <Head>
